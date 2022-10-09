@@ -1,5 +1,5 @@
 #!/bin/bash
-butlerinfo () {
+Unlimited_loop_test () {
     bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo "Butler Ip: $bot_ip"
     echo "<br>" 
@@ -9,14 +9,12 @@ butlerinfo () {
     else
         ping -c1 -W 1 $bot_ip   >/dev/null
         if [ $? -eq 0 ]; then
-           echo '<pre>'
-           sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]."
-           echo '</pre>'
-           echo "<br>"
-           echo "OK Done...."
+            sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions test_butler_loop_start "[$1, [{\""$2"\",$3},{\""$4"\",$5}]]."
+            echo "<br>"
+            echo "OK Done...."
         else
-           echo "Butler is not ON.....turn on Butler FIRST"
-        fi  
+            echo "Butler is not ON.....turn on Butler FIRST"
+        fi
     fi
 }
 echo "Content-type: text/html"
@@ -25,7 +23,7 @@ echo ""
 echo '<html>'
 echo '<head>'
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-echo '<title>Get Butler info</title>'
+echo '<title>Loop test with count</title>'
 echo '<link rel="stylesheet" href="/rack.css" type="text/css">'
 echo '</head>'
 echo '<body>'
@@ -36,10 +34,15 @@ echo "<br>"
 echo "<br>"
 echo "<br>"
 echo "<br>"
+
   echo "<form method=GET action=\"${SCRIPT}\">"\
        '<table nowrap>'\
           '<tr><td>Butler_ID</TD><TD><input type="number" name="Butler_ID" size=12></td></tr>'\
-		  '</tr></table>'
+      '<tr><td>Source Barcode</TD><TD><input type="text" name="Source_Barcode" size=12></td></tr>'\
+      '<tr><td>Source Direction</TD><TD><input type="number" name="Source_Direction" size=12></td></tr>'\
+      '<tr><td>Destination Barcode</TD><TD><input type="text" name="Destination_Barcode" size=12></td></tr>'\
+      '<tr><td>Destination Direction</TD><TD><input type="number" name="Destination_Direction" size=12></td></tr>'\
+          '</tr></table>'
 
   echo '<br><input type="submit" value="SUBMIT">'\
        '<input type="reset" value="Reset"></form>'
@@ -61,12 +64,23 @@ echo "<br>"
   else
    # No looping this time, just extract the data you are looking for with sed:
      XX=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/'`
-	 
-	 echo "Butler_ID: " $XX
-     echo '<br>'
+     YY=`echo "$QUERY_STRING" | sed -n 's/^.*Source_Barcode=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+     ZZ=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){4}.*/\2/'`
+     AA=`echo "$QUERY_STRING" | sed -n 's/^.*Destination_Barcode=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+     BB=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){7}.*/\2/'`
      
+     echo "Butler_ID: " $XX
+     echo '<br>'
+     echo "Source_Barcode: " $YY
+     echo '<br>'
+     echo "Source Direction: " $ZZ
+     echo '<br>'
+     echo "Destination_Barcode: " $AA
+     echo '<br>'
+     echo "Destination Direction: " $BB
+     echo '<br>'
 
-   butlerinfo $XX
+     Unlimited_loop_test $XX $YY $ZZ $AA $BB
      
      
   fi
@@ -75,3 +89,4 @@ echo '</body>'
 echo '</html>'
 
 exit 0
+

@@ -1,23 +1,10 @@
 #!/bin/bash
-butlerinfo () {
-    bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
-    echo "Butler Ip: $bot_ip"
-    echo "<br>" 
-    if [ ! -n "$bot_ip" ]
-    then
-        echo "Wrong Butler ID"
-    else
-        ping -c1 -W 1 $bot_ip   >/dev/null
-        if [ $? -eq 0 ]; then
-           echo '<pre>'
-           sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]."
-           echo '</pre>'
-           echo "<br>"
-           echo "OK Done...."
-        else
-           echo "Butler is not ON.....turn on Butler FIRST"
-        fi  
-    fi
+reservation_info () {
+    echo "Reservation Info"
+    echo "<br>"
+    echo '<pre>'
+    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript exclusive_reservation get_by_id "[{$1,$2}]."
+    echo '</pre>'
 }
 echo "Content-type: text/html"
 echo ""
@@ -25,7 +12,7 @@ echo ""
 echo '<html>'
 echo '<head>'
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-echo '<title>Get Butler info</title>'
+echo '<title>Get exclusive_reservation Info</title>'
 echo '<link rel="stylesheet" href="/rack.css" type="text/css">'
 echo '</head>'
 echo '<body>'
@@ -36,10 +23,13 @@ echo "<br>"
 echo "<br>"
 echo "<br>"
 echo "<br>"
+echo "Type Coordinates on which you want to check( For ex:- If barcode is 032.054 then X-> 54 and Y-> 32"
+echo "<br>"
   echo "<form method=GET action=\"${SCRIPT}\">"\
        '<table nowrap>'\
-          '<tr><td>Butler_ID</TD><TD><input type="number" name="Butler_ID" size=12></td></tr>'\
-		  '</tr></table>'
+          '<tr><td>X_Coordinate</TD><TD><input type="number" name="X_Coordinate" size=12></td></tr>'\
+	  '<tr><td>Y_Coordinate</TD><TD><input type="number" name="Y_Coordinate" size=12></td></tr>'\
+          '</tr></table>'
 
   echo '<br><input type="submit" value="SUBMIT">'\
        '<input type="reset" value="Reset"></form>'
@@ -61,14 +51,13 @@ echo "<br>"
   else
    # No looping this time, just extract the data you are looking for with sed:
      XX=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/'`
-	 
-	 echo "Butler_ID: " $XX
+     YY=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){2}.*/\2/'`
+	      
+     echo "X_Coordinate: " $XX
      echo '<br>'
-     
-
-   butlerinfo $XX
-     
-     
+     echo "Y_Coordinate: " $YY
+     echo '<br>'
+     reservation_info $XX $YY
   fi
 echo '</div>'
 echo '</body>'

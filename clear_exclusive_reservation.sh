@@ -1,5 +1,5 @@
 #!/bin/bash
-butlerinfo () {
+exclusive_reservation () {
     bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo "Butler Ip: $bot_ip"
     echo "<br>" 
@@ -9,13 +9,26 @@ butlerinfo () {
     else
         ping -c1 -W 1 $bot_ip   >/dev/null
         if [ $? -eq 0 ]; then
-           echo '<pre>'
-           sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]."
-           echo '</pre>'
            echo "<br>"
-           echo "OK Done...."
+           echo "Butler is online, please turn off the butler and remove from map"
+           echo "<br>"
         else
-           echo "Butler is not ON.....turn on Butler FIRST"
+           echo "<br>"
+           echo "<br>"
+           echo "Butler is in dead state"
+           echo "<br>"
+           taskkey=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+    	   tasktype=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+    	   if [ "$taskkey" == "null" ] && [ "$tasktype" == "null" ] ; then
+    	   	echo "<br>"
+    	   	echo "Taskkey and tasktype is null, clearing barcode reservation please make sure butler is not physically present in the Map"
+          sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript exclusive_reservation_functions clear_butler_reservations "[$1]."
+    	   	echo "<br>"
+    	   else
+    	   	echo "<br>"
+    	   	echo "Butler is having taskkey/tasktype associated with it, clear taskkey from butler and then Try again"
+    	   	echo "<br>"
+    	   fi
         fi  
     fi
 }
@@ -25,7 +38,7 @@ echo ""
 echo '<html>'
 echo '<head>'
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-echo '<title>Get Butler info</title>'
+echo '<title>Clear exclusive_reservation</title>'
 echo '<link rel="stylesheet" href="/rack.css" type="text/css">'
 echo '</head>'
 echo '<body>'
@@ -35,6 +48,11 @@ echo "<br>"
 echo "<br>"
 echo "<br>"
 echo "<br>"
+echo "<br>"
+echo "<br>"
+echo "<br>"
+echo "<br>"
+echo "Type Butler ID which is in dead state"
 echo "<br>"
   echo "<form method=GET action=\"${SCRIPT}\">"\
        '<table nowrap>'\
@@ -66,7 +84,7 @@ echo "<br>"
      echo '<br>'
      
 
-   butlerinfo $XX
+   exclusive_reservation $XX
      
      
   fi

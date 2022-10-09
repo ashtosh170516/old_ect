@@ -1,5 +1,5 @@
 #!/bin/bash
-butlerinfo () {
+Init_butler () {
     bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo "Butler Ip: $bot_ip"
     echo "<br>" 
@@ -9,8 +9,9 @@ butlerinfo () {
     else
         ping -c1 -W 1 $bot_ip   >/dev/null
         if [ $? -eq 0 ]; then
+           echo "Sending init to Butler $1...."
            echo '<pre>'
-           sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]."
+           sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions send_debug_off "[$1]."
            echo '</pre>'
            echo "<br>"
            echo "OK Done...."
@@ -25,7 +26,7 @@ echo ""
 echo '<html>'
 echo '<head>'
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-echo '<title>Get Butler info</title>'
+echo '<title>INIT Butler</title>'
 echo '<link rel="stylesheet" href="/rack.css" type="text/css">'
 echo '</head>'
 echo '<body>'
@@ -36,10 +37,11 @@ echo "<br>"
 echo "<br>"
 echo "<br>"
 echo "<br>"
+
   echo "<form method=GET action=\"${SCRIPT}\">"\
        '<table nowrap>'\
           '<tr><td>Butler_ID</TD><TD><input type="number" name="Butler_ID" size=12></td></tr>'\
-		  '</tr></table>'
+          '</tr></table>'
 
   echo '<br><input type="submit" value="SUBMIT">'\
        '<input type="reset" value="Reset"></form>'
@@ -61,12 +63,12 @@ echo "<br>"
   else
    # No looping this time, just extract the data you are looking for with sed:
      XX=`echo "$QUERY_STRING" | sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/'`
-	 
-	 echo "Butler_ID: " $XX
+     
+     echo "Butler_ID: " $XX
      echo '<br>'
      
 
-   butlerinfo $XX
+     Init_butler $XX 
      
      
   fi
@@ -75,3 +77,4 @@ echo '</body>'
 echo '</html>'
 
 exit 0
+
