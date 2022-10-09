@@ -1,28 +1,28 @@
 #!/bin/bash
 clear_task_from_butler () {
     echo '<pre>'
-    taskkey=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | cut -d'"' -f2`
-    tasktype=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+    taskkey=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | cut -d'"' -f2`
+    tasktype=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
     echo '</pre>'
     echo "<br>"
     if [ "$tasktype" == "picktask" ] ; then
-        task_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
+        task_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
         if [ "$task_status" == "complete" ] || [ -z $task_status ]; then
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
                 echo "<br>"
         else
           echo "Task key exist and not in complete state Taskkey:$taskkey , type:$tasktype , Status:$task_status "
         fi
     elif [ "$tasktype" == "audittask" ]; then
-        task_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
+        task_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
         if [ "$task_status" == "complete" ] || [ -z $task_status ]; then
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
                 echo "<br>"
         else
           echo "Task key exist and not in complete state Taskkey:$taskkey , type:$tasktype , Status:$task_status "

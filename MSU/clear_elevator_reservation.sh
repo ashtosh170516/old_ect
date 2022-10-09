@@ -1,6 +1,6 @@
 #!/bin/bash
 clear_resrvation () {
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript elevator_functions force_clear_elevator_reservations "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript elevator_functions force_clear_elevator_reservations "[$1]."
     echo "Clearing reservation from Elevator of Butler_ID $1"
 }
 echo "Content-type: text/html"

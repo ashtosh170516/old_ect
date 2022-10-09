@@ -3,7 +3,7 @@ remove_gate_breach () {
     echo "Removing gate breach for Controller Id : <<'$1'>> "
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript generic_peripheral remove_gate_breach "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript generic_peripheral remove_gate_breach "[<<\"$1\">>]."
     echo '</pre>'
 
 }

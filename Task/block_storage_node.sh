@@ -4,11 +4,11 @@ block_storage_node () {
     echo "<br>"
     if [ "$1" -eq "1" ]; then
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_node search_by "[[{'properties', 'equal', #{audit_marked => true}}], 'key']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_node search_by "[[{'properties', 'equal', #{audit_marked => true}}], 'key']."
       echo '</pre>'
     elif [ "$1" -eq "2" ]; then
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_node search_by "[[{'properties', 'equal', #{audit_marked => true}}], 'record']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_node search_by "[[{'properties', 'equal', #{audit_marked => true}}], 'record']."
       echo '</pre>'
     else 
         echo "Wrong Key pressed"

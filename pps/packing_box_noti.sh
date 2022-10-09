@@ -3,7 +3,7 @@ packing_notification () {
     echo "Send the packing box association notification for Order Id : <<'$1'>>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery send_notification "[{'packing_box_association',[<<\"$1\">>]}]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery send_notification "[{'packing_box_association',[<<\"$1\">>]}]."
     echo '</pre>'
 
 }

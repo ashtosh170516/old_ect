@@ -1,6 +1,6 @@
 #!/bin/bash
 charger_error (){
-    bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+    bot_ip=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo "Butler Ip: $bot_ip"
     echo "<br>"
     if [ ! -n "$bot_ip" ]
@@ -10,7 +10,7 @@ charger_error (){
     else
         ping -c1 -W 1 $bot_ip  >/dev/null
         if [ $? -eq 0 ]; then
-            sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions send_debug_off "[$1]."
+            sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions send_debug_off "[$1]."
             echo "OK Done...."
             echo "<br>"
         else
@@ -21,7 +21,7 @@ charger_error (){
     sleep 1
     echo "Sending Init to Charger"
     echo "<br>"
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript charger_functions remove_blacklist_chargers "[[$2]]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript charger_functions remove_blacklist_chargers "[[$2]]."
 
 }
 echo "Content-type: text/html"

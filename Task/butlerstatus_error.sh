@@ -1,7 +1,7 @@
 #!/bin/bash
 change_butler_status_to_error () {
     echo "Changing Butler : $1 Status to Error"
-    bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+    bot_ip=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo $bot_ip
     if [ ! -n "$bot_ip" ]
     then
@@ -9,7 +9,7 @@ change_butler_status_to_error () {
     else
         ping -c1 -W 1 $bot_ip  > /dev/null
         if [ $? -eq 0 ];then
-            sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'status','error'}]]."
+            sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'status','error'}]]."
         else
            echo "Butler is not ON.....turn on Butler FIRST"
         fi 

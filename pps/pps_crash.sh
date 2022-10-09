@@ -2,7 +2,7 @@
 pps_crash () {
     echo "Crash report for  PPS_ID : $1"
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery get_crash_for_pps "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery get_crash_for_pps "[$1]."
 }
 echo "Content-type: text/html"
 echo ""

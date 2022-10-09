@@ -11,7 +11,7 @@ order_information () {
     echo '</pre>'
     echo "Status on Core"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node get_by_id "[<<\"$order_id\">>]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node get_by_id "[<<\"$order_id\">>]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

@@ -3,11 +3,11 @@ audit_task_pps () {
     echo "All Audit Task on PPS_ID : $1"
     if [ "$2" -eq "1" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'pps_id', 'equal',$1},{'status', 'notequal', 'complete'}], 'key']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'pps_id', 'equal',$1},{'status', 'notequal', 'complete'}], 'key']."
        echo '</pre>'
     elif [ "$2" -eq "2" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'pps_id', 'equal',$1},{'status', 'notequal', 'complete'}], 'record']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'pps_id', 'equal',$1},{'status', 'notequal', 'complete'}], 'record']."
        echo '</pre>'
     else 
         echo "Wrong Key pressed"

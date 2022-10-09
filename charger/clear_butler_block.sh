@@ -1,13 +1,13 @@
 #!/bin/bash
 clear_block_butler () {
-    attached_butler=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo search_by "[[{'charger_id', 'equal', $1}], ['attached_butler_id']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
+    attached_butler=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo search_by "[[{'charger_id', 'equal', $1}], ['attached_butler_id']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
     echo "Attached butler : $attached_butler"
     if [ "$attached_butler" == "undefined" ]; then
       echo "<br>"
       echo "<br>"
       echo "Clearing block Butler from Charger_ID: $1"
       echo "<br>"
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo update_columns_by_id "[$1,[{'blocked_by_butler_ids',[]}]]."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo update_columns_by_id "[$1,[{'blocked_by_butler_ids',[]}]]."
     else
       echo "<br>"
       echo "<br>"

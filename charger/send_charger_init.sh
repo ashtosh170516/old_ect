@@ -2,7 +2,7 @@
 init_charger (){
     echo "Sending Init to Charger"
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript charger_functions remove_blacklist_chargers "[[$1]]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript charger_functions remove_blacklist_chargers "[[$1]]."
 
 }
 echo "Content-type: text/html"

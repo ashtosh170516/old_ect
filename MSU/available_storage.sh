@@ -2,7 +2,7 @@
 available_storage () {
     echo "All available storable location"
     echo "<br>"
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_info search_by "[[{'status', 'equal', 'available'}], 'record']."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript storage_info search_by "[[{'status', 'equal', 'available'}], 'record']."
     echo "<br>"
     echo "DONE"
 }

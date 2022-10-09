@@ -12,13 +12,13 @@ sku_information () {
     echo "Active TPID for item id:" $product_uid
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript tagged_item search_by "[[{'item_id', 'equal', <<\"$product_uid\">>},{'active','equal','true'}], 'record']."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript tagged_item search_by "[[{'item_id', 'equal', <<\"$product_uid\">>},{'active','equal','true'}], 'record']."
     echo '</pre>'
     echo "<br>"
     echo "Inventory present for SKU:" $1
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript inventory search_by "[[{'item_uid', 'equal', <<\"$product_uid\">>}], 'record']."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript inventory search_by "[[{'item_uid', 'equal', <<\"$product_uid\">>}], 'record']."
     echo '</pre>'
 }
 echo "Content-type: text/html"

@@ -3,7 +3,7 @@ ppsbinrec_get_by_id () {
     echo "PPSbinrec for PPS : $1 and Bin : $2"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec get_by_id "[{$1,\""$2"\"}]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec get_by_id "[{$1,\""$2"\"}]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

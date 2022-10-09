@@ -4,11 +4,11 @@ audit_task_pending_system () {
     echo "<br>"
     if [ "$1" -eq "1" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'status', 'notequal', 'complete'}], 'key']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'status', 'notequal', 'complete'}], 'key']."
        echo '</pre>'
     elif [ "$1" -eq "2" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'status', 'notequal', 'complete'}], 'record']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'status', 'notequal', 'complete'}], 'record']."
        echo '</pre>'
     else 
         echo "Wrong Key pressed"

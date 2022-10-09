@@ -4,7 +4,7 @@ all_ppsbin_info () {
     echo "<br>"
     echo "PPSBIN-ID , processable_state"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin search_by "[[{'pps_id', 'equal', $1}], ['ppsbin_record_id','processable']]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin search_by "[[{'pps_id', 'equal', $1}], ['ppsbin_record_id','processable']]."
     echo '</pre>'
  
 }

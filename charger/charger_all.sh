@@ -3,7 +3,7 @@ chargerinfo_get_all () {
     echo "All Charger Info "
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo get_all "[]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo get_all "[]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

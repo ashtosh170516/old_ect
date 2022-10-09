@@ -3,7 +3,7 @@ Rack_Details_from_coordinate () {
     echo "Rack Info"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript rackinfo check_for_rack_coordinate "[{$1,$2}]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript rackinfo check_for_rack_coordinate "[{$1,$2}]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

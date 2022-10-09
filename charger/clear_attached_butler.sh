@@ -2,7 +2,7 @@
 clear_attached_butler () {
     echo "Clearing attached Butler from Charger_ID: $1"
     echo "<br>"
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo update_columns_by_id "[$1,[{'attached_butler_id','undefined'}]]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript chargerinfo update_columns_by_id "[$1,[{'attached_butler_id','undefined'}]]."
 
 }
 echo "Content-type: text/html"

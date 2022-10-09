@@ -3,8 +3,8 @@ MSU_CG () {
     echo "Rack Cente of Gravity Info"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions calculate_center_of_mass_deviation_of_msu "[<<\"$1\">>]."
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions is_center_of_mass_of_msu_deviated "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions calculate_center_of_mass_deviation_of_msu "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions is_center_of_mass_of_msu_deviated "[<<\"$1\">>]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

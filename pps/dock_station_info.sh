@@ -3,7 +3,7 @@ dock_station_info () {
     echo "Dock station info for PPS_ID : $1"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript dock_station_info search_by "[[{'pps_id', 'equal', $1}], 'record']."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript dock_station_info search_by "[[{'pps_id', 'equal', $1}], 'record']."
     echo '</pre>'
 }
 echo "Content-type: text/html"

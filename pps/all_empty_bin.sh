@@ -3,7 +3,7 @@ all_empty_bin () {
     echo "These all Bins are Empty as per order manager"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager get_min_free_ppsbins_list "[]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager get_min_free_ppsbins_list "[]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

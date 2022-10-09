@@ -4,33 +4,33 @@ task_associated_to_rack () {
         echo "PPS Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
         echo "Audit Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
         echo "Msu rearrangement Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript msurearrangementtaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript msurearrangementtaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,0}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
     elif [ "$2" -eq "1" ]; then
         echo "PPS Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
         echo "Audit Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
         echo "Msu rearrangement Task associated to this rack"
         echo "<br>"
         echo '<pre>'
-        sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript msurearrangementtaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
+        sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript msurearrangementtaskrec search_by "[[{'rack','equal',{'rackrec',<<\"$1\">>,1}},{'status', 'notequal', 'complete'}], 'record']."
         echo '</pre>'
     else
         echo "Wrong Face entered"

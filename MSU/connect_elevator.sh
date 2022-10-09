@@ -3,7 +3,7 @@ conectar_elevador (){
     echo "Conectando Elevador"
     echo "<br>"
     #sudo /opt/butler_server/erts-9.3.3.8/bin/escript /home/gor/rpc_call.escript elevatorinfo enable_elevator $1.
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript elevatorinfo enable_elevator "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript elevatorinfo enable_elevator "[$1]."
 }
 echo "Content-type: text/html"
 echo ""

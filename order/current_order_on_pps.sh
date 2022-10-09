@@ -3,8 +3,8 @@ order_detail_on_pps () {
     echo "Order details on PPS : $1 "
     echo "<br>"
     echo '<pre>'
-    ORDER_ID=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery get_current_order "[$1]."`
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node get_by_id "[$ORDER_ID]."
+    ORDER_ID=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery get_current_order "[$1]."`
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node get_by_id "[$ORDER_ID]."
     echo '</pre>'
     echo "<br>"
     echo "<br>"

@@ -3,7 +3,7 @@ auditrec_display () {
     echo "display_id : <<'$1'>>  Info "
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_summary "[{'display_id',$1}]."      
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_summary "[{'display_id',$1}]."      
     echo '</pre>'
 }
 echo "Content-type: text/html"

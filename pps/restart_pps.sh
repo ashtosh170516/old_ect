@@ -2,7 +2,7 @@
 restart_pps () {
     echo "Restarting PPS_ID : $1"
     echo "<br>"
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery restart_pps "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery restart_pps "[$1]."
 }
 echo "Content-type: text/html"
 echo ""

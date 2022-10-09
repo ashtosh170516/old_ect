@@ -3,7 +3,7 @@ pick_task_pps_order () {
     echo "All Pick Task Associated on that PPS : $1"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec get_pick_tasks_by_pps [$1].
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec get_pick_tasks_by_pps [$1].
     echo '</pre>'
 }
 echo "Content-type: text/html"

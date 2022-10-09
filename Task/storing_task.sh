@@ -1,24 +1,24 @@
 #!/bin/bash
 change_status_from_storing () {
     echo '<pre>'
-    taskkey=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | cut -d'"' -f2`
-    tasktype=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+    taskkey=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | cut -d'"' -f2`
+    tasktype=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
     echo '</pre>'
     echo "<br>"
     if [ "$tasktype" == "picktask" ]; then
-        task_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
+        task_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
         if [ "$task_status" == "storing" ]; then
-            upsert_flag=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['upsert_flag']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
+            upsert_flag=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppstaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['upsert_flag']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
             if [ "$upsert_flag" = true ] ; then
                 echo "status is storing,Upsert Flag is true and task is for Pick/Put"
                 echo "<br>"
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
                 echo "changing task status to created"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'picktask',<<\"$taskkey\">>},{'pending','created'},'undefined']."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'picktask',<<\"$taskkey\">>},{'pending','created'},'undefined']."
                 echo "Done"
                 echo "<br>"
             elif [ "$upsert_flag" = false ] ; then
@@ -28,28 +28,28 @@ change_status_from_storing () {
                 echo "<br>"
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'picktask',<<\"$taskkey\">>},'complete','undefined']."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'picktask',<<\"$taskkey\">>},'complete','undefined']."
                 echo "Done"
             fi
         else
           echo "Task is not in pending,storing status, please use tower to de-assign the pick/put task"
         fi
     elif [ "$tasktype" == "audittask" ]; then
-        task_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
+        task_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['status']]." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
         if [ "$task_status" == "storing" ]; then
-            upsert_flag=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['upsert_flag']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
+            upsert_flag=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript audittaskrec search_by "[[{'task_key', 'equal', <<\"$taskkey\">>}], ['upsert_flag']]." | sed 's/.*\[\([^]]*\)\].*/\1/g'`
             if [ "$upsert_flag" = true ] ; then
                 echo "status is storing,Upsert Flag is true and task is for Audit"
                 echo "<br>"
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
                 echo "changing task status to created"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'audittask',<<\"$taskkey\">>},{'pending','created'},'undefined']."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'audittask',<<\"$taskkey\">>},{'pending','created'},'undefined']."
                 echo "Done"
             elif [ "$upsert_flag" = false ] ; then
                 echo 'status is storing,upsert flag is false and task is Audit, changing task status to complete'
@@ -58,9 +58,9 @@ change_status_from_storing () {
                 echo "<br>"
                 echo "Clearing task & Subtask from butler"
                 echo "<br>"
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
-                sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'audittask',<<\"$taskkey\">>},'complete','undefined']."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo update_columns_by_id "[$1,[{'taskkey','null'},{'tasktype','null'},{'status','dead'}]]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions clear_butler_subtasks "[$1]."
+                sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_task_functions set_task_status "[{'audittask',<<\"$taskkey\">>},'complete','undefined']."
                 echo "Done"
             fi
         else

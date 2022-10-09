@@ -4,11 +4,11 @@ auditrec_pps () {
     echo "<br>"
     if [ "$2" -eq "1" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript auditrec search_by "[[{'selected_pps', 'equal', [$1]},{'status', 'notequal', 'audit_completed'},{'status','notequal','audit_resolved'},{'status','notequal','audit_cancelled'},{'status','notequal','audit_reaudited'},{'status','notequal','audit_unprocessable'},{'status','notequal','audit_rejected'}], 'key']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript auditrec search_by "[[{'selected_pps', 'equal', [$1]},{'status', 'notequal', 'audit_completed'},{'status','notequal','audit_resolved'},{'status','notequal','audit_cancelled'},{'status','notequal','audit_reaudited'},{'status','notequal','audit_unprocessable'},{'status','notequal','audit_rejected'}], 'key']."
        echo '</pre>'
     elif [ "$2" -eq "2" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript auditrec search_by "[[{'selected_pps', 'equal', [$1]},{'status', 'notequal', 'audit_completed'},{'status','notequal','audit_resolved'},{'status','notequal','audit_cancelled'},{'status','notequal','audit_reaudited'},{'status','notequal','audit_unprocessable'},{'status','notequal','audit_rejected'}], 'record']."
+       sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript auditrec search_by "[[{'selected_pps', 'equal', [$1]},{'status', 'notequal', 'audit_completed'},{'status','notequal','audit_resolved'},{'status','notequal','audit_cancelled'},{'status','notequal','audit_reaudited'},{'status','notequal','audit_unprocessable'},{'status','notequal','audit_rejected'}], 'record']."
        echo '</pre>'
     else
         echo "Wrong key pressed"

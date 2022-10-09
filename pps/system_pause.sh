@@ -1,6 +1,6 @@
 #!/bin/bash
 system_pause () {
-    controller_id=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript zigbee_peripherals search_by "[[{state_data,equal,[{zone,<<\"Zone$1\">>},'_','_','_']}], ['peripheral_id']]." | cut -d'"' -f2`
+    controller_id=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript zigbee_peripherals search_by "[[{state_data,equal,[{zone,<<\"Zone$1\">>},'_','_','_']}], ['peripheral_id']]." | cut -d'"' -f2`
     echo "$controller_id"
     if [ "$controller_id" == "Result: {ok,[]}" ]; then
       echo "<br>"
@@ -11,7 +11,7 @@ system_pause () {
       echo "System pause for Controller Id : <<'$controller_id'>> "
       echo "<br>"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript generic_peripheral apply_emergency_pause "[<<\"$controller_id\">>]."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript generic_peripheral apply_emergency_pause "[<<\"$controller_id\">>]."
       echo '</pre>'
       echo "<br>"
     fi

@@ -4,7 +4,7 @@ tote_information () {
     echo "<br>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec search_by "[[{'totes_associated', 'equal', [<<\"$1\">>]}], 'record']."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec search_by "[[{'totes_associated', 'equal', [<<\"$1\">>]}], 'record']."
     echo '</pre>'
     echo "<br>"
 }

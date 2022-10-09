@@ -5,7 +5,7 @@ rearranging_racks () {
     echo "<br>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript  butler_test_functions test_rearrange_racks_for_best_put "[]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript  butler_test_functions test_rearrange_racks_for_best_put "[]."
     echo '</pre>'        
 }
 echo "Content-type: text/html"

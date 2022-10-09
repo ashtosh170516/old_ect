@@ -3,7 +3,7 @@
       echo "checking PPS : $1 and Bin : $2"
       echo "<br>"
       
-      bin_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec get_ppsbin_status "[{$1,\""$2"\"}]." | cut -d' ' -f2-`
+      bin_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbinrec get_ppsbin_status "[{$1,\""$2"\"}]." | cut -d' ' -f2-`
       if [ "$bin_status" == "sidelined" ]; then
         echo "Bin status is sidelined, please resume order from Tower/ Easy console"
         echo "<br>"
@@ -12,7 +12,7 @@
         echo "<br>"
         echo "Checking processable flag for this bin"
         echo "<br>"
-        flag_status=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin get_column_by_id "[{$1,\""$2"\"},'processable']." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
+        flag_status=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin get_column_by_id "[{$1,\""$2"\"},'processable']." | sed 's/.*\[\([^]]*\)\].*/\1/g' | sed 's/^.*,//;s/}$//'`
         if [ "$flag_status" == true ]; then
           echo "Bin is already having processable as true"
           echo "<br>"
@@ -22,7 +22,7 @@
           echo "Clearing processable flag to resume bin"
           echo "<br>"
           echo '<pre>'
-          sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin update_columns_by_id "[{$1,\""$2"\"},[{'processable','true'}]]."
+          sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsbin update_columns_by_id "[{$1,\""$2"\"},[{'processable','true'}]]."
           echo '</pre>'
         fi
       fi

@@ -4,7 +4,7 @@ put_block_slot () {
     echo "<br>"
     echo "<br>"
     echo "Slots, Time, Put Order"
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions generate_put_blocked_report "[]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions generate_put_blocked_report "[]."
     echo "<br>"
     echo '<pre>'
     while read -r line; do

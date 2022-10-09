@@ -4,7 +4,7 @@ check_mtu () {
     echo "<br>"
     echo "please check the output below(if no output coming it means above Tote id is not found in any MTU)"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/MSU/mtu_id.escript $1
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/MSU/mtu_id.escript $1
     echo '</pre>'
 }
 echo "Content-type: text/html"

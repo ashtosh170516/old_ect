@@ -4,13 +4,13 @@ auditrec () {
     echo "<br>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_help "['audit']."      
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_help "['audit']."      
     echo '</pre>'
     echo "############################       Auditline cycle     ###################################"
     echo "<br>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_help "['auditline']."      
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery audit_help "['auditline']."      
     echo '</pre>'
 }
 echo "Content-type: text/html"

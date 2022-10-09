@@ -3,7 +3,7 @@ dock_station_reset_soft () {
     echo "Soft Reset Dockstation_ID : " $1
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery reset_dockstation_soft "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery reset_dockstation_soft "[$1]."
     echo '</pre>'
 }
 

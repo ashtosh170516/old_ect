@@ -4,35 +4,35 @@ active_pps () {
     echo "<br>"
     if [ "$1" -eq "1" ]; then
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'}], 'key']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'}], 'key']."
       echo '</pre>'
       echo "PPS which is in Pick"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'pick'}], 'key']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'pick'}], 'key']."
       echo '</pre>'
       echo "PPS which is in Put"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'put'}], 'key']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'put'}], 'key']."
       echo '</pre>'
       echo "PPS which is in Audit"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'audit'}], 'key']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'audit'}], 'key']."
       echo '</pre>'
     elif [ "$1" -eq "2" ]; then
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'}], 'record']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'}], 'record']."
       echo '</pre>'
       echo "PPS which is in Pick"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'pick'}], 'record']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'pick'}], 'record']."
       echo '</pre>'
       echo "PPS which is in Put"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'put'}], 'record']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'put'}], 'record']."
       echo '</pre>'
       echo "PPS which is in Audit"
       echo '<pre>'
-      sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'audit'}], 'record']."
+      sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ppsnode search_by "[[{'active_status', 'equal', 'true'},{'mode', 'equal', 'audit'}], 'record']."
       echo '</pre>'
     else 
         echo "Wrong Choice"
