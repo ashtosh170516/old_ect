@@ -1,6 +1,6 @@
 #!/bin/bash
 Purging_Butler () {
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions purge_butler "[$1]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions purge_butler "[$1]."
     echo "Purging Done for Butler $1...."
 }
 echo "Content-type: text/html"

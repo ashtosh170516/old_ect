@@ -3,7 +3,7 @@ butler_debug_off_all () {
     echo "Sending  Init for all Butler "
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions send_debug_off_all_butlers "[]."
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_functions send_debug_off_all_butlers "[]."
     echo '</pre>'
 }
 echo "Content-type: text/html"

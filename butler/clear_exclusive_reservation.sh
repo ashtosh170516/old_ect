@@ -1,6 +1,6 @@
 #!/bin/bash
 exclusive_reservation () {
-    bot_ip=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
+    bot_ip=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo get_by_id "[$1]." | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
     echo "Butler Ip: $bot_ip"
     echo "<br>" 
     if [ ! -n "$bot_ip" ]
@@ -17,12 +17,12 @@ exclusive_reservation () {
            echo "<br>"
            echo "Butler is in dead state"
            echo "<br>"
-           taskkey=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
-    	   tasktype=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+           taskkey=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['taskkey']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
+    	   tasktype=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butlerinfo search_by "[[{'id', 'equal', $1}], ['tasktype']]." | sed 's/.*\[\([^]]*\)].*/\1/'`
     	   if [ "$taskkey" == "null" ] && [ "$tasktype" == "null" ] ; then
     	   	echo "<br>"
     	   	echo "Taskkey and tasktype is null, clearing barcode reservation please make sure butler is not physically present in the Map"
-          sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript exclusive_reservation_functions clear_butler_reservations "[$1]."
+          sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript exclusive_reservation_functions clear_butler_reservations "[$1]."
     	   	echo "<br>"
     	   else
     	   	echo "<br>"

@@ -1,13 +1,13 @@
 #!/bin/bash
 ods_excluded () {
-    barcode_validation=`sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript gridinfo search_by "[[{'barcode', 'equal', \""$1"\"}], 'key']." | grep -oP '\[\K[^\]]+'`
+    barcode_validation=`sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript gridinfo search_by "[[{'barcode', 'equal', \""$1"\"}], 'key']." | grep -oP '\[\K[^\]]+'`
     echo "<br>"
     echo "Your given barcode coordinate is: $1"
     echo "<br>"
     echo "ODS Excluded"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.1/bin/escript /usr/lib/cgi-bin/rpc_call.escript ods_excluded create_or_update "[{\""$1"\",$2},{'ods_excluded',{\""$1"\",$2},'true'},[]]." 
+    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript ods_excluded create_or_update "[{\""$1"\",$2},{'ods_excluded',{\""$1"\",$2},'true'},[]]." 
     echo '</pre>'
     echo "<br>"
     echo "<br>"   
