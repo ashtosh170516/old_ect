@@ -1,6 +1,6 @@
 #!/bin/bash
 unfulfillable_order_report () {
-           sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions write_unfulfillable_orders_report "[$1]."
+           sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript butler_test_functions write_unfulfillable_orders_report "[$1]."
            echo "<br>"
            echo '<pre>'
            while read -r line; do

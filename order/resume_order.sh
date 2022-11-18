@@ -3,7 +3,7 @@ resume_order () {
     echo "Order Id : <<'$1'>> going to be resume"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-11.1.3/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery resume_orders "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery resume_orders "[<<\"$1\">>]."
     echo '</pre>'
 
 }
