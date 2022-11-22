@@ -2,7 +2,7 @@
 change_to_created () {
     echo "Changing Status of order_id : $1 to created"
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node update_columns_by_id "[<<\"$1\">>,[{'status','created'}]]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node update_columns_by_id "[<<\"$1\">>,[{'status','created'}]]."
 
 }
 echo "Content-type: text/html"

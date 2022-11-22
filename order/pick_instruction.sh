@@ -4,7 +4,7 @@ pick_instruction () {
     echo "Pick instruction for Order id:" $1
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript pick_instruction search_by "[[{'order_id', 'equal', <<\"$1\">>}], 'record']."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript pick_instruction search_by "[[{'order_id', 'equal', <<\"$1\">>}], 'record']."
     echo '</pre>'
 }
 echo "Content-type: text/html"

@@ -3,7 +3,7 @@ breach_order () {
     echo "No. of PBT breached orders"
     echo "<br>"
     echo '<pre>'   
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript pps_orderlines print_pbt_summary_without_pending_inventory "[]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript pps_orderlines print_pbt_summary_without_pending_inventory "[]."
     echo '</pre>'
     echo "<br>"
     echo "<br>"
@@ -11,7 +11,7 @@ breach_order () {
     echo "Breach Order details:"
     echo '<pre>'
     echo "External_id, PBT_Status, PBT, Created_time, Order_status "
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/order/pbt_breach_report.escript
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/order/pbt_breach_report.escript
     echo '</pre>'
     echo "<br>"
 }

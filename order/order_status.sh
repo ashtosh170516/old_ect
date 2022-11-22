@@ -5,7 +5,7 @@ order_status () {
     echo "<br>"
     echo "<br>"
     echo '<pre>'
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript pps_orderlines order_node print_summary "[]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript pps_orderlines order_node print_summary "[]."
     echo '</pre>'        
 }
 echo "Content-type: text/html"

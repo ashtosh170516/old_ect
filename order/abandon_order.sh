@@ -2,7 +2,7 @@
 abandon_order () {
     echo "Abandoning Order : <<'$1'>>........... "
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery abandon_orders "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript station_recovery abandon_orders "[<<\"$1\">>]."
 }
 echo "Content-type: text/html"
 echo ""

@@ -2,7 +2,7 @@
 process_order () {
     echo "Calling Order Manager"
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager process_orders "[]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager process_orders "[]."
     echo "<br>"
     echo "DONE"
 }

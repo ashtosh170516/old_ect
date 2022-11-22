@@ -4,11 +4,11 @@ all_pending_order () {
     echo "<br>"
     if [ "$1" -eq "1" ]; then
        echo '<pre>'
-       sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node search_by "[[{'status', 'equal','pending'}], 'key']."
+       sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node search_by "[[{'status', 'equal','pending'}], 'key']."
        echo '</pre>'
     elif [ "$1" -eq "2" ]; then
       echo '<pre>'
-       sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node search_by "[[{'status', 'equal', 'pending'}], 'record']."
+       sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_node search_by "[[{'status', 'equal', 'pending'}], 'record']."
        echo '</pre>'
     else 
         echo "Wrong Key pressed"

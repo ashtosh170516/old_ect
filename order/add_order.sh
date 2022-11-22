@@ -2,7 +2,7 @@
 add_order () {
     echo "Adding Order ID : $1 in order manager."
     echo "<br>"
-    sudo /opt/butler_server/erts-9.3.3.6/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager add_order "[<<\"$1\">>]."
+    sudo /opt/butler_server/erts-13.0.4/bin/escript /usr/lib/cgi-bin/rpc_call.escript order_manager add_order "[<<\"$1\">>]."
 }
 echo "Content-type: text/html"
 echo ""
